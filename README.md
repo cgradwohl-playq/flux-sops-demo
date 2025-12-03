@@ -44,7 +44,11 @@ If you want to encrypt secrets at rest we have three options:
 
 ## Demo
 
-PUT LOOM DEMO HERE
+Repo Overview: https://www.loom.com/share/26831d942e6243c1aa32cbfee78ab164
+
+Cluster Demo: https://www.loom.com/share/49f0802986374e54baacb957fdf05e4d
+
+Workflow Demo: https://www.loom.com/share/97f722fe90754ff5abcbc15051e8195a
 
 ## Prerequisites
 
