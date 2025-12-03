@@ -9,7 +9,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system # the GitRepository source that holds your repo (match your existing source name)
+    name: demo-app-1 # the GitRepository CRD that holds your repo (match your existing source name)
   validation: client
   decryption:
     provider: sops
