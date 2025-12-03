@@ -179,28 +179,16 @@ sops --encrypt --in-place password.txt
 Finally we create the Kubernetes Secret Object using `secretsGenerator` in our
 kustomization.yaml file.
 
-## Configuring Flux for SOPS decryption
+### Configuring Flux for SOPS decryption
 
 First we make the age private key available in-cluster in the flux-system
-namespace so that Flux can use it to decrypt.
+namespace so that Flux can use it to decrypt. Note, that this is part of the
+Kustomization CRD definition we created in `flux-cd\` folder.
 
 ```bash
 kubectl -n flux-system create secret generic sops-age \
-  --from-file=age.agekey=./clusters/minikube/secrets/sops-age.key \
+  --from-file=age.agekey=./apps/demo-app-1/deploy/secrets/sops-age.key \
   --dry-run=client -o yaml | kubectl apply -f -
-```
-
-Finally we update the Kustomization CRD to use sops and the private encryption
-key for secret decryption.
-
-```bash
-hello-flux/clusters/minikube/flux-system/secrets-kustomization.yaml
-```
-
-then we need to apply it:
-
-```bash
-kubectl apply -f clusters/minikube/flux-system/secrets-kustomization.yaml
 ```
 
 ## validation
