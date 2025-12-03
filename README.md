@@ -3,6 +3,45 @@
 In this repository we present a workflow for encrypting and decrypting secrets
 using SOPS and FluxCD.
 
+## Overview
+
+In order for Flux to be able to decrypt locally encrypted secrets, it needs
+access to the private encryption key. See
+[Configuring Flux for SOPS decryption](#configuring-flux-for-sops-decryption).
+
+Once flux has the key, the workflow to add secrets consists of three steps.
+
+1. Create and encrypt the secret locally using the public key.
+2. Add the encrypted secret file to `secretGenerator`
+3. Push the changes to main
+
+Flux will then create Kubernetes Secret Objects from the encrypted secrets.
+Kubernetes only receives decrypted secrets and Flux always decrypts them before
+applying. The cluster never stores encrypted SOPS data in any Secret object.
+
+If you want to encrypt secrets at rest we have three options:
+
+1. SOPS + Kubernetes Secrets Encryption
+   https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
+
+- Keeps SOPS encryption at the Git/repo layer, before Flux applies.
+- KMS encryption is at the cluster layer, after Flux applies.
+
+2. SealedSecrets + Kubernetes Secrets Encryption
+   https://fluxcd.io/flux/guides/sealed-secrets/
+
+- encrypt secrets using the SealedSecrets public key instead of SOPS
+- Git stores SealedSecrets, not SOPS-encrypted files
+- Flux does not need to handle SOPS decryption anymore — it just applies the
+  SealedSecret YAML
+
+3. External Secrets Operator + Kubernetes Secrets Encryption
+
+- a Kubernetes controller that lets your cluster consume secrets from external
+  secret stores, such as AWS Secrets Manager or AWS SSM Parameter Store
+- Instead of storing secrets in Git, ESO fetches them at runtime and creates
+  Kubernetes Secret objects in your cluster
+
 ## Demo
 
 PUT LOOM DEMO HERE
