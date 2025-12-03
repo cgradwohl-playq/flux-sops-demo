@@ -5,5 +5,4 @@ namespace: default
 
 resources:
   - pod.yaml
-  - secrets/ # subfolder with secrets only
-
+  - secrets/
