@@ -19,6 +19,8 @@ Flux will then create Kubernetes Secret Objects from the encrypted secrets.
 Kubernetes only receives decrypted secrets and Flux always decrypts them before
 applying. The cluster never stores encrypted SOPS data in any Secret object.
 
+### Encryption at rest
+
 If you want to encrypt secrets at rest we have three options:
 
 1. SOPS + Kubernetes Secrets Encryption
