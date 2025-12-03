@@ -162,7 +162,7 @@ touch apps/demo-app-1/deploy/secrets/.sops.yaml
 
 The contents of these files are found in this repo.
 
-## Creating the encrypted secret locally
+### Creating the encrypted secret locally
 
 First we configure sops to use our public key for encryption via our .sops.yaml
 file.
@@ -170,6 +170,8 @@ file.
 Next we create and encrypt our two secrets:
 
 ```bash
+cd apps/demo-app-1/deploy/secrets/
+
 sops --encrypt --in-place username.txt
 sops --encrypt --in-place password.txt
 ```
