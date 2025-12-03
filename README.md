@@ -197,10 +197,10 @@ First we can confirm that the secrets are created and decrypted:
 
 ```bash
 # show secret exists
-kubectl get secret myapp-secrets -n default
+kubectl get secret demo-app-1-secrets -n default
 
 # show the resource (data is base64)
-kubectl get secret myapp-secrets -n default -o yaml
+kubectl get secret demo-app-1-secrets -n default -o yaml
 
 # decode and print the username/password — expected: plaintext (not SOPS JSON)
 kubectl get secret myapp-secrets -n default -o jsonpath='{.data.username}' | base64 --decode ; echo
@@ -211,7 +211,7 @@ Now we can exec into the running pod and verify the secrets are available as
 plain text:
 
 ```bash
-kubectl exec -it pod/secret-test-pod -n default -- sh -c 'echo "DB_USERNAME=$DB_USERNAME"; echo "DB_PASSWORD=$DB_PASSWORD"'
+kubectl exec -it pod/demo-app-1 -n default -- sh -c 'echo "DB_USERNAME=$DB_USERNAME"; echo "DB_PASSWORD=$DB_PASSWORD"'
 ```
 
 ## age.agekey
