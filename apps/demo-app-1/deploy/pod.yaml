@@ -22,3 +22,8 @@ spec:
             secretKeyRef:
               name: demo-app-1-secrets
               key: password
+        - name: DB_PASSWORD_2
+          valueFrom:
+            secretKeyRef:
+              name: demo-app-1-secrets
+              key: password2
