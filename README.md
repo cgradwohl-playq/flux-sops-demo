@@ -187,7 +187,9 @@ kubectl -n flux-system get gitrepository demo-app-1
 kubectl -n flux-system get kustomization demo-app-1
 ```
 
-## Creating demo-app-1 and secrets This demo application will be a single pod that reads in two secrets.
+## Creating demo-app-1 and secrets
+
+This demo application will be a single pod that reads in two secrets.
 
 ```bash
 #
